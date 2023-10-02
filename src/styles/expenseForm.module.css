@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: auto !important;
+}
+
+.income_expense {
+  display: flex !important;
+  background-color: wheat;
+  justify-content: space-around !important;
+  width: 90% !important;
+  margin: auto !important;
+}
+
+.inputField {
+  display: flex !important;
+  justify-content: center !important;
+  width: 90% !important;
+  margin: auto !important;
+}
+
+.error {
+  color: red !important;
+  text-align: center;
+}
+
+.button {
+  font-size: 20px !important;
+  margin: 20px 0px !important;
+  text-transform: none !important ;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+}
