@@ -81,10 +81,29 @@ export const ReadExpense = () => {
                     : "inherit",
               }}
             >
-              <TableCell sx={{ fontSize: "20px", textAlign: "center" }}>
+              <TableCell
+                sx={{
+                  fontSize: "16px",
+                  textAlign: "center",
+                }}
+              >
+                {data.date}
+              </TableCell>
+              <TableCell
+                sx={{
+                  fontSize: "16px",
+                  textAlign: "center",
+                }}
+              >
                 {data.description}
               </TableCell>
-              <TableCell sx={{ fontSize: "20px", textAlign: "center" }}>
+              <TableCell
+                sx={{
+                  fontSize: "16px",
+                  textAlign: "center",
+                  whiteSpace: "nowrap",
+                }}
+              >
                 {data.amount}
               </TableCell>
 
@@ -97,7 +116,7 @@ export const ReadExpense = () => {
                 <DeleteIcon
                   sx={{
                     color: "white;",
-                    fontSize: "40px;",
+                    fontSize: "30px;",
                     textAlign: "center",
                   }}
                 />
@@ -107,7 +126,7 @@ export const ReadExpense = () => {
                   <EditIcon
                     sx={{
                       color: "yellow;",
-                      fontSize: "40px;",
+                      fontSize: "30px;",
                       textAlign: "center",
                     }}
                   />

@@ -1,9 +1,23 @@
+import storage from "redux-persist/lib/storage";
 import { configureStore } from "@reduxjs/toolkit";
 import expenseReducer from "../Redux/expenseSlice";
+import { persistStore, persistReducer } from "redux-persist";
+
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["expenses", "totalIncome", "totalExpence"],
+};
+
+const persistedReducer = persistReducer(persistConfig, expenseReducer);
+
 const store = configureStore({
   reducer: {
-    expenses: expenseReducer,
+    expenses: persistedReducer,
   },
 });
 
+const persistor = persistStore(store);
+
+export { persistor };
 export default store;

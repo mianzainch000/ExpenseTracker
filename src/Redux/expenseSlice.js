@@ -22,8 +22,8 @@ const expenseSlice = createSlice({
     },
 
     updateExpense: (state, action) => {
-      const { index, description, amount, selectBox } = action.payload;
-      state.expenses[index] = { description, amount, selectBox };
+      const { index, date, description, amount, selectBox } = action.payload;
+      state.expenses[index] = { date, description, amount, selectBox };
     },
 
     totalIncome: (state, action) => {

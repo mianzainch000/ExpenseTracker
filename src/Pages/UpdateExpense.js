@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import expenseForm from "../styles/expenseForm.module.css";
 import { useParams, useNavigate } from "react-router-dom";
+import expenseForm from "../styles/expenseForm.module.css";
 import { updateExpense, calculateTotal } from "../Redux/expenseSlice";
 import {
   TextField,
@@ -26,6 +26,7 @@ export const UpdateExpense = () => {
 
   const formik = useFormik({
     initialValues: {
+      date: "",
       description: "",
       amount: "",
       selectBox: "",
@@ -33,24 +34,24 @@ export const UpdateExpense = () => {
 
     onSubmit: (values, onSubmitprops) => {
       onSubmitprops.setSubmitting(false);
-      update(values.description, values.amount, values.selectBox);
+      update(values.date, values.description, values.amount, values.selectBox);
 
       formik.handleReset();
     },
 
     validationSchema: Yup.object({
-      description: Yup.string()
-        .required("Description is Required")
-        .matches(/^[A-Za-z]+$/, "Only Alphabets are Allowed"),
+      date: Yup.string().required("Date is Required"),
+      description: Yup.string().required("Description is Required"),
       amount: Yup.string().required("Amount is Required"),
       selectBox: Yup.string().required("SelectBox is Required"),
     }),
   });
 
-  const update = (description, amount, selectBox) => {
+  const update = (date, description, amount, selectBox) => {
     dispatch(
       updateExpense({
         index: index,
+        date,
         description,
         amount,
         selectBox,
@@ -62,6 +63,7 @@ export const UpdateExpense = () => {
 
   useEffect(() => {
     formik.setValues({
+      date: fetchedExpense.date,
       description: fetchedExpense.description,
       amount: fetchedExpense.amount,
     });
@@ -96,6 +98,29 @@ export const UpdateExpense = () => {
 
           <form onSubmit={formik.handleSubmit}>
             <Grid item container lg={12} spacing={2}>
+              <Grid item lg={12} md={12} sm={12} xs={12}>
+                <Box className={expenseForm.inputField}>
+                  <TextField
+                    id="outlined-basic"
+                    variant="outlined"
+                    autoComplete="off"
+                    type="date"
+                    name="date"
+                    sx={{
+                      width: "90%",
+                    }}
+                    value={formik.values.date}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />
+                </Box>
+
+                {formik.touched.date && formik.errors.date ? (
+                  <Box className={expenseForm.error}>{formik.errors.date}</Box>
+                ) : (
+                  ""
+                )}
+              </Grid>
               <Grid item lg={12} md={12} sm={12} xs={12}>
                 <Box className={expenseForm.inputField}>
                   <TextField
