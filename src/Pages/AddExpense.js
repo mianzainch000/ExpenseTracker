@@ -1,7 +1,8 @@
 import React from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { ReadExpense } from "./ReadExpense";
+import ReadExpense from "./ReadExpense";
+import { withSnackBar } from "../component/snackbar";
 import { useDispatch, useSelector } from "react-redux";
 import expenseForm from "../styles/expenseForm.module.css";
 import { addExpense, calculateTotal } from "../Redux/expenseSlice";
@@ -17,10 +18,10 @@ import {
   Typography,
 } from "@mui/material";
 
-export const AddExpense = () => {
+const AddExpense = (props) => {
   const dispatch = useDispatch();
   let totalIncomeVar = useSelector((state) => state.expenses.totalIncome);
-  let totalExpenceVar = useSelector((state) => state.expenses.totalExpence);
+  let totalExpenseVar = useSelector((state) => state.expenses.totalExpense);
 
   const formik = useFormik({
     initialValues: {
@@ -48,6 +49,10 @@ export const AddExpense = () => {
     console.log({ values });
     dispatch(addExpense(values));
     dispatch(calculateTotal());
+    props.snackBarMessage({
+      type: "success",
+      message: "Transaction Add Successfully!",
+    });
   };
 
   return (
@@ -84,7 +89,7 @@ export const AddExpense = () => {
                 margin="auto"
               ></Typography>
               <Typography variant="h3">
-                {totalIncomeVar - totalExpenceVar} Rs
+                {totalIncomeVar - totalExpenseVar} Rs
               </Typography>
               <Box sx={{ display: "flex", justifyContent: "center" }}>
                 <Box className={expenseForm.income_expense}>
@@ -97,9 +102,9 @@ export const AddExpense = () => {
                   </Box>
                   <Box>
                     {" "}
-                    <Typography fontSize="30px">Expence</Typography>
+                    <Typography fontSize="30px">Expense</Typography>
                     <Typography fontSize="30px">
-                      {totalExpenceVar} Rs
+                      {totalExpenseVar} Rs
                     </Typography>
                   </Box>
                 </Box>
@@ -264,3 +269,4 @@ export const AddExpense = () => {
     </div>
   );
 };
+export default withSnackBar(AddExpense);

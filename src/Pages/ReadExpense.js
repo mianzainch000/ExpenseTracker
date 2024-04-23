@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { withSnackBar } from "../component/snackbar";
 import { deleteExpense } from "../Redux/expenseSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { calculateTotal } from "../Redux/expenseSlice";
@@ -19,7 +20,7 @@ import {
   Button,
 } from "@mui/material";
 
-export const ReadExpense = () => {
+const ReadExpense = (props) => {
   const dispatch = useDispatch();
   const [deleteId, setDeleteId] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -55,6 +56,10 @@ export const ReadExpense = () => {
             onClick={() => {
               handleDeleted(deleteId);
               setDialogOpen(false);
+              props.snackBarMessage({
+                type: "error",
+                message: "Transaction Delete Successfully!",
+              });
             }}
             sx={{ color: "red" }}
           >
@@ -162,3 +167,4 @@ export const ReadExpense = () => {
     </>
   );
 };
+export default withSnackBar(ReadExpense);

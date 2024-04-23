@@ -6,7 +6,7 @@ const expenseSlice = createSlice({
     expenses: [],
     currentBalance: 0,
     totalIncome: 0,
-    totalExpence: 0,
+    totalExpense: 0,
   },
 
   reducers: {
@@ -30,8 +30,8 @@ const expenseSlice = createSlice({
       state.totalIncome += action.payload;
     },
 
-    totalExpence: (state, action) => {
-      state.totalExpence += action.payload;
+    totalExpense: (state, action) => {
+      state.totalExpense += action.payload;
     },
 
     calculateTotal: (state, action) => {
@@ -49,7 +49,7 @@ const expenseSlice = createSlice({
         }
       }
       state.totalIncome = totalIncomeAmount;
-      state.totalExpence = totalExpensesAmount;
+      state.totalExpense = totalExpensesAmount;
     },
   },
 });
@@ -59,7 +59,7 @@ export const {
   deleteExpense,
   updateExpense,
   totalIncome,
-  totalExpence,
+  totalExpense,
   calculateTotal,
 } = expenseSlice.actions;
 export default expenseSlice.reducer;
