@@ -1,5 +1,5 @@
 import "./App.css";
-import { AddExpense } from "./Pages/AddExpense";
+import {AddExpense} from "./Pages/AddExpense"
 import { UpdateExpense } from "./Pages/UpdateExpense";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 function App() {
@@ -8,7 +8,7 @@ function App() {
      
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<AddExpense />} />
+            <Route path="/" element={<AddExpense/>} />
             <Route path="update/:index" element={<UpdateExpense />} />
           </Routes>
         </BrowserRouter>

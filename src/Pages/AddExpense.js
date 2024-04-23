@@ -24,10 +24,10 @@ export const AddExpense = () => {
 
   const formik = useFormik({
     initialValues: {
-      date: "",
       description: "",
       amount: "",
       selectBox: "",
+      date: "",
     },
 
     onSubmit: (values, onSubmitprops) => {
@@ -37,10 +37,10 @@ export const AddExpense = () => {
     },
 
     validationSchema: Yup.object({
-      date: Yup.string().required("Date is Required"),
       description: Yup.string().required("Description is Required"),
       amount: Yup.string().required("Amount is Required"),
       selectBox: Yup.string().required("SelectBox is Required"),
+      date: Yup.string().required("Date is Required"),
     }),
   });
 
@@ -56,7 +56,7 @@ export const AddExpense = () => {
         className={expenseForm.container}
         sx={{
           margin: { lg: "0", md: "0", sm: "0", xs: "auto" },
-          width: { lg: "40%", md: "10n0%", sm: "100%", xs: "100%" },
+          width: { lg: "40%", md: "100%", sm: "100%", xs: "100%" },
         }}
       >
         <Box>
@@ -72,7 +72,11 @@ export const AddExpense = () => {
             Expense Tracker
           </Typography>
           <Box sx={{ backgroundColor: "whitesmoke" }}>
-            <Box sx={{ textAlign: "center" }}>
+            <Box
+              sx={{
+                textAlign: "center",
+              }}
+            >
               <Typography fontSize="30px">Current Balance</Typography>
               <Typography
                 borderBottom="1px solid black"
@@ -80,18 +84,24 @@ export const AddExpense = () => {
                 margin="auto"
               ></Typography>
               <Typography variant="h3">
-                {totalIncomeVar - totalExpenceVar} RS
+                {totalIncomeVar - totalExpenceVar} Rs
               </Typography>
-              <Box className={expenseForm.income_expense}>
-                <Box>
-                  {" "}
-                  <Typography fontSize="30px"> Income</Typography>
-                  <Typography fontSize="30px">{totalIncomeVar} RS </Typography>
-                </Box>
-                <Box>
-                  {" "}
-                  <Typography fontSize="30px">Expence</Typography>
-                  <Typography fontSize="30px">{totalExpenceVar} RS</Typography>
+              <Box sx={{ display: "flex", justifyContent: "center" }}>
+                <Box className={expenseForm.income_expense}>
+                  <Box>
+                    {" "}
+                    <Typography fontSize="30px"> Income</Typography>
+                    <Typography fontSize="30px">
+                      {totalIncomeVar} Rs{" "}
+                    </Typography>
+                  </Box>
+                  <Box>
+                    {" "}
+                    <Typography fontSize="30px">Expence</Typography>
+                    <Typography fontSize="30px">
+                      {totalExpenceVar} Rs
+                    </Typography>
+                  </Box>
                 </Box>
               </Box>
               <Typography variant="h4" marginTop="10px">
@@ -117,6 +127,7 @@ export const AddExpense = () => {
                   <Box className={expenseForm.inputField}>
                     <TextField
                       id="outlined-basic"
+                      placeholder="Enter Date"
                       variant="outlined"
                       autoComplete="off"
                       type="date"
@@ -138,7 +149,6 @@ export const AddExpense = () => {
                     ""
                   )}
                 </Grid>
-
                 <Grid item lg={12} md={12} sm={12} xs={12}>
                   <Box className={expenseForm.inputField}>
                     <TextField

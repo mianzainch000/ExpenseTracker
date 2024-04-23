@@ -1,9 +1,9 @@
+import React, { useEffect } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
 import expenseForm from "../styles/expenseForm.module.css";
+import { useParams, useNavigate } from "react-router-dom";
 import { updateExpense, calculateTotal } from "../Redux/expenseSlice";
 import {
   TextField,
@@ -26,35 +26,35 @@ export const UpdateExpense = () => {
 
   const formik = useFormik({
     initialValues: {
-      date: "",
       description: "",
       amount: "",
       selectBox: "",
+      date: "",
     },
 
     onSubmit: (values, onSubmitprops) => {
       onSubmitprops.setSubmitting(false);
-      update(values.date, values.description, values.amount, values.selectBox);
+      update(values.description, values.amount, values.selectBox, values.date);
 
       formik.handleReset();
     },
 
     validationSchema: Yup.object({
-      date: Yup.string().required("Date is Required"),
       description: Yup.string().required("Description is Required"),
       amount: Yup.string().required("Amount is Required"),
       selectBox: Yup.string().required("SelectBox is Required"),
+      date: Yup.string().required("Date is Required"),
     }),
   });
 
-  const update = (date, description, amount, selectBox) => {
+  const update = (description, amount, selectBox, date) => {
     dispatch(
       updateExpense({
         index: index,
-        date,
         description,
         amount,
         selectBox,
+        date,
       })
     );
     dispatch(calculateTotal());
@@ -63,9 +63,9 @@ export const UpdateExpense = () => {
 
   useEffect(() => {
     formik.setValues({
-      date: fetchedExpense.date,
       description: fetchedExpense.description,
       amount: fetchedExpense.amount,
+      date: fetchedExpense.date,
     });
   }, [fetchedExpense]);
 
@@ -102,6 +102,7 @@ export const UpdateExpense = () => {
                 <Box className={expenseForm.inputField}>
                   <TextField
                     id="outlined-basic"
+                    placeholder="Enter Date"
                     variant="outlined"
                     autoComplete="off"
                     type="date"

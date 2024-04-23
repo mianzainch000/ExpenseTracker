@@ -5,6 +5,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { deleteExpense } from "../Redux/expenseSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { calculateTotal } from "../Redux/expenseSlice";
+import expenseForm from "../styles/expenseForm.module.css";
 import {
   TableContainer,
   Table,
@@ -64,10 +65,7 @@ export const ReadExpense = () => {
 
       {/* Table */}
 
-      <TableContainer
-        component={Paper}
-        sx={{ maxHeight: "500px;", width: "90%", margin: "auto" }}
-      >
+      <TableContainer component={Paper} className={expenseForm.tableContainer}>
         <Table aria-label="simple table" stickyHeader>
           {expenses?.map((data, index) => (
             <TableRow
@@ -83,26 +81,42 @@ export const ReadExpense = () => {
             >
               <TableCell
                 sx={{
-                  fontSize: "16px",
-                  textAlign: "center",
+                  fontSize: {
+                    lg: "20px",
+                    sm: "20px",
+                    md: "20px",
+                    xs: "16px",
+                  },
                 }}
+                className={expenseForm.tableCell}
               >
                 {data.date}
               </TableCell>
+
               <TableCell
                 sx={{
-                  fontSize: "16px",
-                  textAlign: "center",
+                  fontSize: {
+                    lg: "20px",
+                    sm: "20px",
+                    md: "20px",
+                    xs: "16px",
+                  },
                 }}
+                className={expenseForm.tableCell}
               >
                 {data.description}
               </TableCell>
+
               <TableCell
                 sx={{
-                  fontSize: "16px",
-                  textAlign: "center",
-                  whiteSpace: "nowrap",
+                  fontSize: {
+                    lg: "20px",
+                    sm: "20px",
+                    md: "20px",
+                    xs: "16px",
+                  },
                 }}
+                className={expenseForm.tableCell}
               >
                 {data.amount}
               </TableCell>
@@ -116,18 +130,27 @@ export const ReadExpense = () => {
                 <DeleteIcon
                   sx={{
                     color: "white;",
-                    fontSize: "30px;",
-                    textAlign: "center",
+                    fontSize: {
+                      lg: "40px",
+                      md: "40px",
+                      sm: "40px",
+                      xs: "30px",
+                    },
                   }}
                 />
               </TableCell>
+
               <TableCell>
                 <NavLink to={`/update/${index}`}>
                   <EditIcon
                     sx={{
                       color: "yellow;",
-                      fontSize: "30px;",
-                      textAlign: "center",
+                      fontSize: {
+                        lg: "40px",
+                        md: "40px",
+                        sm: "40px",
+                        xs: "30px",
+                      },
                     }}
                   />
                 </NavLink>
