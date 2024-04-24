@@ -6,7 +6,7 @@ import { persistStore, persistReducer } from "redux-persist";
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["expenses", "totalIncome", "totalExpence"],
+  whitelist: ["expenses", "totalIncome", "totalExpense"],
 };
 
 const persistedReducer = persistReducer(persistConfig, expenseReducer);
