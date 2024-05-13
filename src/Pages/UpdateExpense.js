@@ -92,7 +92,7 @@ export const UpdateExpense = () => {
           </Typography>
 
           <Typography variant="h4" textAlign="center" marginTop="10px">
-            Transcation Update
+            Transaction Update
           </Typography>
           <br />
 
@@ -225,7 +225,7 @@ export const UpdateExpense = () => {
                       width: "90%",
                     }}
                   >
-                    Update Transcation
+                    Update Transaction
                   </Button>
                 </Box>
               </Grid>

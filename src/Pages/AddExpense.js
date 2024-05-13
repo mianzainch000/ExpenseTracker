@@ -110,7 +110,7 @@ const AddExpense = (props) => {
                 </Box>
               </Box>
               <Typography variant="h4" marginTop="10px">
-                Transcation History
+                Transaction History
               </Typography>
               <br />
               <ReadExpense />
@@ -122,7 +122,7 @@ const AddExpense = (props) => {
                 margin="auto"
               ></Typography>
               <br />
-              <Typography variant="h4">Transcation Add</Typography>
+              <Typography variant="h4">Transaction Add</Typography>
               <br />
             </Box>
 
@@ -257,7 +257,7 @@ const AddExpense = (props) => {
                         width: "90%",
                       }}
                     >
-                      Add Transcation
+                      Add Transaction
                     </Button>
                   </Box>
                 </Grid>
